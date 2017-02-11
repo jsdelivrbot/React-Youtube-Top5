@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Create a new component, should produce some HTML
-const App = function(){
+// declare a function with new ES 6 syntax
+const App = () => {
     return <div>Hi!</div>; //jsx cannot be interpreted by the browser
 }
 
