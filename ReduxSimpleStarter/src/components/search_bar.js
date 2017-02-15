@@ -1,8 +1,28 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const SearchBar = () => {
-    return <input />; // React.createElement
-};
+
+class SearchBar extends Component{
+
+    constructor(props){
+        // calling parent method in Component here
+        super(props);
+
+        this.state = {term: ''};
+    }
+
+    render() {
+        return (
+            <div>
+            <input
+
+                value = {this.state.term}
+                onChange = {(event) => this.setState({term: event.target.value})} />
+            </div>
+        );
+    }
+
+
+}
 
 // export
 export default SearchBar;
