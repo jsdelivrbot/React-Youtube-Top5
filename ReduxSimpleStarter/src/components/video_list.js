@@ -5,7 +5,12 @@ const VideoList = (props) => {
     // use map instead of for loop in javascript to avoid typo
     const videoItems = props.videos.map((video) => {
         // add id to our each piece of data
-        return <VideoListItem key = {video.etag} video = {video} />
+        return (
+            <VideoListItem
+                onVideoSelect = {props.onVideoSelect}
+                key = {video.etag}
+                video = {video} />
+        );
     });
 
 

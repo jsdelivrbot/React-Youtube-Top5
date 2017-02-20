@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar'; // write the path for our own created files
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 const API_KEY = 'AIzaSyAt2rKKfigSTRp2JgE2rzFifiURCqCfBc8'; // youtube api key in string
 
 class App extends Component {
@@ -10,15 +11,18 @@ class App extends Component {
         super(props);
 
         this.state = {
-            videos: []
+            videos: [],
+            selectedVideo: null
         };
 
         YTSearch({
             key: API_KEY,
             term: 'surfboards'
         }, (videos) => {
-            this.setState({videos}); // ES6 syntax of this.setState({videos: videos});
-            // only works when the key and the variable name are the same.
+            this.setState({
+                videos: videos,
+                selectedVideo: videos[0]
+            });
         });
     }
 
@@ -26,7 +30,10 @@ class App extends Component {
         return (
             <div>
                 <SearchBar/>
-                <VideoList videos={this.state.videos}/>
+                <VideoDetail video = {this.state.selectedVideo}/>
+                <VideoList
+                    onVideoSelect = {selectedVideo => this.setState({selectedVideo})}
+                    videos={this.state.videos}/>
             </div>
         ); //jsx cannot be interpreted by the browser
     }
